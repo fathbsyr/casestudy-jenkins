@@ -5,7 +5,7 @@ pipeline {
     IMAGE = "fatihsyir/demo-app"
     TAG = "latest"
     DOCKER_CRED = "docker-hub"
-    KUBECONFIG_CRED = "kubeconfig-dev"
+    KUBECONFIG_CRED = "kubeconfig-dev" // Optional, bisa dihapus
     NAMESPACE = "default"
     HELM_RELEASE = "casestudy-jenkins1"
   }
@@ -44,20 +44,21 @@ pipeline {
       }
     }
 
-  stage('Deploy to Kubernetes (Helm)') {
-  steps {
-    script {
-      echo "🚀 Deploying to Kubernetes via Helm..."
-      sh '''
-        export KUBECONFIG=/var/jenkins_home/kubeconfig
-        helm upgrade --install $HELM_RELEASE ./helm \
-          --set image.repository=$IMAGE \
-          --set image.tag=$TAG \
-          --namespace $NAMESPACE --create-namespace
-      '''
+    stage('Deploy to Kubernetes (Helm)') {
+      steps {
+        script {
+          echo "🚀 Deploying to Kubernetes via Helm..."
+          sh '''
+            export KUBECONFIG=/var/jenkins_home/kubeconfig
+            helm upgrade --install $HELM_RELEASE ./helm \
+              --set image.repository=$IMAGE \
+              --set image.tag=$TAG \
+              --namespace $NAMESPACE --create-namespace
+          '''
+        }
+      }
     }
-  }
-}
+  } // <--- INI YANG KAMU LUPA TADI
 
   post {
     success {
