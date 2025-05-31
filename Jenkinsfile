@@ -50,7 +50,7 @@ pipeline {
           script {
             echo "🚀 Deploying to Kubernetes via Helm..."
             sh '''
-              export KUBECONFIG=$KUBE_FILE
+              export KUBECONFIG=/var/jenkins_home/kubeconfig
               helm upgrade --install $HELM_RELEASE ./helm \
                 --set image.repository=$IMAGE \
                 --set image.tag=$TAG \
