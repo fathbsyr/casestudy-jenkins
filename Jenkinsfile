@@ -58,7 +58,19 @@ pipeline {
         }
       }
     }
-  } // <--- INI YANG KAMU LUPA TADI
+
+    stage('Expose Service') {
+      steps {
+        script {
+          echo "🌐 Exposing service via NodePort..."
+          sh '''
+            export KUBECONFIG=/var/jenkins_home/kubeconfig
+            kubectl apply -f service.yaml
+          '''
+        }
+      }
+    }
+  }
 
   post {
     success {
