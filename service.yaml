@@ -8,5 +8,5 @@ spec:
     app: casestudy-jenkins1
   ports:
     - port: 80
-      targetPort: 5000 # ganti sesuai port app kamu
-      nodePort: 30001  # opsional, bisa dikosongin
+      targetPort: 80     
+      nodePort: 30001    
