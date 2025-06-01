@@ -7,7 +7,7 @@ pipeline {
     DOCKER_CRED = "docker-hub"
     KUBECONFIG_CRED = "kubeconfig-dev" // Optional, bisa dihapus
     NAMESPACE = "default"
-    HELM_RELEASE = "casestudy-jenkins1"
+    HELM_RELEASE = "casestudy-kelompok1"
   }
 
   stages {
